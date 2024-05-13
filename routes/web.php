@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
-//use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +22,14 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 //sample routes
 //Route::get('/', [HomeController::class, 'index'])->name('index');
 
+Route::controller(HomeController::class)->group(function() {
+    Route::get('/', 'beranda')->name('beranda');
+    Route::get('/tentang-kami', 'tentang_kami')->name('tentang_kami');
+    Route::get('/visi-misi', 'visi_misi')->name('visi_misi');
+});
+
 Route::controller(LoginRegisterController::class)->group(function() {
-    Route::get('/', 'dashboard');
+    Route::get('/dashboard', 'dashboard');
     Route::get('/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
     Route::get('/login', 'login')->name('login');
