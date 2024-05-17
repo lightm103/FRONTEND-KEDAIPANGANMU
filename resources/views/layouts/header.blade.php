@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') | Kedai Panganmu</title>
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
     <link rel='stylesheet' href="{{ asset('assets/vendor/icofont/icofont.min.css') }}">
     <link rel='stylesheet' href="{{ asset('assets/vendor/animate/animate.min.css') }}">
     <link rel='stylesheet' href="{{ asset('assets/vendor/venobox/venobox.min.css') }}">
@@ -69,16 +69,21 @@
         <div class="rv-20-header-bottom to-be-fixed">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-3 col-4 col-xxs-6">
+                    <div class="col-lg-1 col-4 col-xxs-6">
                         <div class="rv-1-logo">
                             <a href="index.html">
-                                <img src="{{ asset('assets/img/rv-20-logo.png') }}" alt="logo" class="logo">
+                                <!--img src="{{ asset('assets/img/rv-20-logo.png') }}" alt="logo" class="logo"-->
+                                <img src="{{ asset('logo.jpeg') }}" alt="logo" class="logo">
+                                {{--
+                                <img src="{{ asset('logo.jpeg') }}" alt="logo" class="logo" style="width: 30%; margin-right: 10px;">
+                                <b class="text-black" style="font-size:20px;">Kedai Panganmu</b>
+                                --}}
                             </a>
                         </div>
                     </div>
 
                     <!-- nav menu -->
-                    <div class="col-md-6 order-2 order-lg-1">
+                    <div class="col-md-11 order-2 order-lg-1">
                         <div class="rv-1-header-nav__sidebar">
                             <div class="sidebar-heading d-lg-none d-flex align-items-center justify-content-between">
                                 <a href="index.html" class="logo-container"><img src="assets/img/rv-20-logo.png" alt="logo"></a>
@@ -88,57 +93,70 @@
                             <div class="rv-1-header__nav rv-20-header__nav">
                                 <ul class="justify-content-center">
                                     <li>
-                                        <a href="#">Home</a>
+                                        <a href="{{ route('beranda') }}">Beranda</a>
+                                    </li>
 
+                                    <li>
+                                        <a href="{{ route('tentang_kami') }}">Tentang Kami</a>
                                         <ul class="sub-menu">
-                                            <li><a href="index.html">Gardening</a></li>
-                                            <li><a href="index-2.html">Herbal Tea</a></li>
-                                            <li><a href="index-3.html">ECO</a></li>
+                                            <li><a href="{{ route('struktur_organisasi') }}">Struktur Organisasi</a></li>
+                                            <li><a href="{{ route('tugas_pokok_dan_fungsi') }}">Tugas Pokok dan Fungsi</a></li>
+                                            <li><a href="{{ route('sekretariat') }}">Sekretariat</a></li>
+                                            <li><a href="{{ route('bidang_2') }}">Bidang 2</a></li>
                                         </ul>
                                     </li>
 
                                     <li>
-                                        <a href="about.html">About</a>
+                                        <a href="{{ route('visi_dan_misi') }}">Visi dan Misi</a>
                                     </li>
 
                                     <li>
-                                        <a href="#">Pages</a>
+                                        <a href="{{ route('strategi_marketing') }}">Strategi Marketing</a>
                                         <ul class="sub-menu">
-                                            <li><a href="services.html">Services</a></li>
-                                            <li><a href="service-details.html">Service Details</a></li>
-                                            <li><a href="projects.html">Projects</a></li>
-                                            <li><a href="project-details.html">Project Details</a></li>
-                                            <li><a href="team.html">Team Members</a></li>
-                                            <li><a href="404.html">Error 404</a></li>
+                                            <li><a href="{{ route('profil_reformer') }}">Profil Reformer</a></li>
+                                            <li><a href="{{ route('proper') }}">Proper</a></li>
+                                            <li><a href="{{ route('rpp_salawaku') }}">RPP Salawaku</a></li>
+                                            <li><a href="{{ route('ppt') }}">PPT</a></li>
+                                            <li><a href="{{ route('timeline') }}">Timeline</a></li>
+                                            <li><a href="{{ route('nilai_sikap_perilaku') }}">Nilai, Sikap, Perilaku</a></li>
                                         </ul>
                                     </li>
 
                                     <li>
-                                        <a href="#">Shop</a>
+                                        <a href="{{ route('data_kabupaten_kota') }}">Data Kabupaten/Kota</a>
                                         <ul class="sub-menu">
-                                            <li><a href="shop.html">Shop</a></li>
-                                            <li><a href="shop-sidebar.html">Shop with Sidebar</a></li>
-                                            <li><a href="product-details.html">Product Details</a></li>
+                                            <li><a href="{{ route('panel_ternate') }}">Panel Harga Pangan (Kota Ternate)</a></li>
+                                            <li><a href="{{ route('fsva_ternate') }}">FSVA Peta Kerawanan Pangan (Kota Ternate)</a></li>
+                                            <li><a href="{{ route('neraca_ternate') }}">Neraca Bahan Makanan (Kota Ternate)</a></li>
+                                            <li><a href="{{ route('panel_halteng') }}">Panel Harga Pangan (Kab. Halteng)</a></li>
+                                            <li><a href="{{ route('fsva_halteng') }}">FSVA Peta Kerawanan Pangan (Kab. Halteng)</a></li>
+                                            <li><a href="{{ route('neraca_halteng') }}">Neraca Bahan Makanan (Kab. Halteng)</a></li>
                                         </ul>
                                     </li>
 
                                     <li>
-                                        <a href="#">Blog</a>
+                                        <a href="{{ route('publikasi_dan_informasi') }}">Publikasi dan Informasi</a>
                                         <ul class="sub-menu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
+                                            <li><a href="{{ route('pub_kedai_pangan') }}">Kegiatan Kedai Pangan</a></li>
+                                            <li><a href="{{ route('pub_dinas_pangan') }}">Kegiatan di Dinas Pangan</a></li>
                                         </ul>
                                     </li>
 
                                     <li>
-                                        <a href="contact.html">Contact</a>
+                                        <a href="{{ route('hasil') }}">Hasil</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="{{ route('hasil_dokumen') }}">Dokumen</a></li>
+                                            <li><a href="{{ route('hasil_video') }}">Video</a></li>
+                                            <li><a href="{{ route('hasil_foto') }}">Foto</a></li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-8 col-xxs-6 text-end order-1 order-lg-2">
+                    {{--
+                    <div class="col-lg-2 col-8 col-xxs-6 text-end order-1 order-lg-2">
                         <div class="d-flex justify-content-end">
                             <div class="rv-inner-header-right-btns rv-15-header-right-btns rv-20-header-bottom-right-btns">
                                 <a href="#" class="d-sm-inline-block d-none">Get a Quote</a>
@@ -146,6 +164,7 @@
                             <button class="rv-1-header-mobile-menu-btn rv-3-def-btn rv-20-mobile-menu-btn d-lg-none d-inline-block" id="rv-1-header-mobile-menu-btn"><i class="fa-regular fa-bars"></i></button>
                         </div>
                     </div>
+                    --}}
                 </div>
             </div>
         </div>

@@ -12,8 +12,8 @@
                     <div class="row align-items-center">
                         <div class="col-sm-10 col-md-9 col-lg-8 col-xl-7">
                             <div class="rv-20-banner_content">
-                                <span class="rv-20-banner_content_sub_heading rv-text-anime wow fadeInUp" data-wow-delay="0.3s"><span></span> A Dream Garden Home</span>
-                                <h1 class="rv-20-banner_content_heading rv-text-anime wow fadeInUp" data-wow-delay="0.3s">Bridging Nature & Intelligence.</h1>
+                                <span class="rv-20-banner_content_sub_heading rv-text-anime wow fadeInUp" data-wow-delay="0.3s"><span></span> Kedai Panganmu</span>
+                                <h1 class="rv-20-banner_content_heading rv-text-anime wow fadeInUp" data-wow-delay="0.3s">Berakhlak #Bangga<br>Melayani<br>Bangsa</h1>
 
                                 <div class="rv-20-banner_button_area wow fadeInUp" data-wow-delay="0.8s">
                                     <a href="#" class="rv-20-banner_content_btn">Explore More</a>
