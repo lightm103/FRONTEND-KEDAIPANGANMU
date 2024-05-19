@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>@yield('title') | Kedai Panganmu</title>
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
     <link rel='stylesheet' href="{{ asset('assets/vendor/icofont/icofont.min.css') }}">
@@ -19,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/owl-carousel/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/aos/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
     @yield('custom-css')
 </head>
 
@@ -74,7 +76,7 @@
                         <div class="rv-1-logo">
                             <a href="index.html">
                                 <!--img src="{{ asset('assets/img/rv-20-logo.png') }}" alt="logo" class="logo"-->
-                                <img src="{{ asset('logo.jpeg') }}" alt="logo" class="logo">
+                                <img src="{{ asset('logo.png') }}" alt="logo" class="logo">
                                 {{--
                                 <img src="{{ asset('logo.jpeg') }}" alt="logo" class="logo" style="width: 30%; margin-right: 10px;">
                                 <b class="text-black" style="font-size:20px;">Kedai Panganmu</b>
@@ -154,16 +156,16 @@
                         </div>
                     </div>
 
-                    {{--
-                    <div class="col-lg-2 col-8 col-xxs-6 text-end order-1 order-lg-2">
+                    
+                    {{-- <div class="col-lg-2 col-8 col-xxs-6 text-end order-1 order-lg-2">
                         <div class="d-flex justify-content-end">
                             <div class="rv-inner-header-right-btns rv-15-header-right-btns rv-20-header-bottom-right-btns">
                                 <a href="#" class="d-sm-inline-block d-none">Get a Quote</a>
                             </div>
                             <button class="rv-1-header-mobile-menu-btn rv-3-def-btn rv-20-mobile-menu-btn d-lg-none d-inline-block" id="rv-1-header-mobile-menu-btn"><i class="fa-regular fa-bars"></i></button>
                         </div>
-                    </div>
-                    --}}
+                    </div> --}}
+                   
                 </div>
             </div>
         </div>

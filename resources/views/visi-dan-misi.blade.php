@@ -42,6 +42,8 @@
                             </h2>
                         </div>
                         <p class="rv-1-about__descr aos-init aos-animate" data-aos="fade-up" data-aos-delay="150"><p>Kata <strong>SEJAHTERA</strong> yang terkandung dalam visi tersebut adalah akronim dari kata<strong>&nbsp;<span style="color: #db3924;">S</span>EHAT</strong> dan <strong>C<span style="color: #db3924;">E</span>RDAS</strong> berbudaya (sumber daya manusianya), <strong>MA<span style="color: #db3924;">J</span>U</strong> (infrastruktur dan wilayahnya),&nbsp;<strong><span style="color: #db3924;">A</span>GAMIS</strong> <strong>DAN</strong>&nbsp;<strong><span style="color: #db3924;">H</span>ARMONIS</strong> (masyarakatnya),&nbsp;<strong><span style="color: #db3924;">T</span>UMBUH</strong>&nbsp;<strong><span style="color: #db3924;">E</span>KONOMINYA</strong> (secara inklusif dan berkelanjutan), serta&nbsp;<strong><span style="color: #db3924;">R</span>EFORMIS</strong> <strong>DAN</strong>&nbsp;<span style="color: #db3924;"><strong>A</strong></span><strong>DIL</strong>&nbsp; (pemerintahan dan pelayanan publiknya) – sebagai tujuan akhir yang ingin dicapai.</p></p>
+                       
+                       
                         <div class="rv-1-about__txt">
                             <div class="rv-1-section__heading aos-init aos-animate" data-aos="fade-up">
     
