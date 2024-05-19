@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/owl-carousel/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/aos/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @yield('custom-css')
 </head>
 
