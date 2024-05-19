@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/owl-carousel/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/aos/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    @yield('custom-css')
 </head>
 
 <body>
@@ -125,12 +126,10 @@
                                     <li>
                                         <a href="{{ route('data_kabupaten_kota') }}">Data Kabupaten/Kota</a>
                                         <ul class="sub-menu">
-                                            <li><a href="{{ route('panel_ternate') }}">Panel Harga Pangan (Kota Ternate)</a></li>
-                                            <li><a href="{{ route('fsva_ternate') }}">FSVA Peta Kerawanan Pangan (Kota Ternate)</a></li>
-                                            <li><a href="{{ route('neraca_ternate') }}">Neraca Bahan Makanan (Kota Ternate)</a></li>
-                                            <li><a href="{{ route('panel_halteng') }}">Panel Harga Pangan (Kab. Halteng)</a></li>
-                                            <li><a href="{{ route('fsva_halteng') }}">FSVA Peta Kerawanan Pangan (Kab. Halteng)</a></li>
-                                            <li><a href="{{ route('neraca_halteng') }}">Neraca Bahan Makanan (Kab. Halteng)</a></li>
+                                            <li><a href="{{ route('panel') }}">Panel Harga Pangan</a></li>
+                                            <li><a href="{{ route('fsva_ternate') }}">FSVA Peta Kerawanan Pangan</a></li>
+                                            <li><a href="{{ route('neraca_ternate') }}">Neraca Bahan Makanan</a></li>
+
                                         </ul>
                                     </li>
 
@@ -170,3 +169,8 @@
         </div>
     </header>
     <!-- HEADER SECTION ENDS HERE -->
+
+
+
+
+    
