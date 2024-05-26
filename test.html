@@ -1,0 +1,879 @@
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.1">
+
+    <title>Sistem Informasi NBM</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    
+    <script src=" https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js" data-navigate-track></script>
+    <script>
+        var colorPrimary = '#31a354';
+        var colorSecondary = '#addd8e';
+        var colorOrange = '#ff3300';
+        var colorYellow = '#e6d800';
+
+        var colorDeepOrange = "#ff8c00";
+        var colorLightOrange = "#ffcc99";
+
+        var colorDeepRed = "#b22222";
+        var colorLightRed = "#ff6666";
+
+        var colorDarkGrey = "#7f7f7f";
+        var colorLightGrey = "#c7c7c7";
+
+        var colorLightYellow = '#f7fcb9';
+
+        var colorAccent = '#2ca8b2';
+
+        var colorWhite = "#f4f4f4";
+    </script>
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+
+    <link rel="preload" as="style" href="https://sinbm.badanpangan.go.id/build/assets/app-4d1bb92c.css" /><link rel="modulepreload" href="https://sinbm.badanpangan.go.id/build/assets/app-23d2a365.js" /><link rel="stylesheet" href="https://sinbm.badanpangan.go.id/build/assets/app-4d1bb92c.css" data-navigate-track="reload" /><script type="module" src="https://sinbm.badanpangan.go.id/build/assets/app-23d2a365.js" data-navigate-track="reload"></script>    <!-- Livewire Styles --><style >[wire\:loading][wire\:loading], [wire\:loading\.delay][wire\:loading\.delay], [wire\:loading\.inline-block][wire\:loading\.inline-block], [wire\:loading\.inline][wire\:loading\.inline], [wire\:loading\.block][wire\:loading\.block], [wire\:loading\.flex][wire\:loading\.flex], [wire\:loading\.table][wire\:loading\.table], [wire\:loading\.grid][wire\:loading\.grid], [wire\:loading\.inline-flex][wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.none][wire\:loading\.delay\.none], [wire\:loading\.delay\.shortest][wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter][wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short][wire\:loading\.delay\.short], [wire\:loading\.delay\.default][wire\:loading\.delay\.default], [wire\:loading\.delay\.long][wire\:loading\.delay\.long], [wire\:loading\.delay\.longer][wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest][wire\:loading\.delay\.longest] {display: none;}[wire\:offline][wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}:root {--livewire-progress-bar-color: #2299dd;}[x-cloak] {display: none !important;}</style>
+        </head>
+
+<body class="container bg-white">
+            <div class="flex w-screen">
+            <div class="sticky top-0 z-10 w-[20vw] h-screen bg-primary">
+                <div wire:snapshot="{&quot;data&quot;:{&quot;menus&quot;:[[[{&quot;name&quot;:&quot;Nasional&quot;,&quot;route&quot;:&quot;national&quot;,&quot;icon&quot;:&quot;icon-data&quot;},{&quot;s&quot;:&quot;arr&quot;}],[{&quot;name&quot;:&quot;Provinsi&quot;,&quot;route&quot;:&quot;province&quot;,&quot;icon&quot;:&quot;icon-data&quot;},{&quot;s&quot;:&quot;arr&quot;}],[{&quot;name&quot;:&quot;Kabupaten\/Kota&quot;,&quot;route&quot;:&quot;regency&quot;,&quot;icon&quot;:&quot;icon-data&quot;},{&quot;s&quot;:&quot;arr&quot;}],[{&quot;name&quot;:&quot;Grafik&quot;,&quot;route&quot;:&quot;graphic&quot;,&quot;icon&quot;:&quot;graphic&quot;},{&quot;s&quot;:&quot;arr&quot;}],[{&quot;name&quot;:&quot;Info&quot;,&quot;route&quot;:&quot;info&quot;,&quot;icon&quot;:&quot;newspaper&quot;},{&quot;s&quot;:&quot;arr&quot;}]],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;lwzb3tgtmhzrWxeRziPU&quot;,&quot;name&quot;:&quot;sidebar&quot;,&quot;path&quot;:&quot;province&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;id&quot;},&quot;checksum&quot;:&quot;5b30485b6f3c3865e78b9d3e45dae775a44898d0879677dc13d970acd2a23bd0&quot;}" wire:effects="[]" wire:id="lwzb3tgtmhzrWxeRziPU" class="flex flex-col h-full">
+    <!--[if BLOCK]><![endif]-->        <div class="w-40 pt-8 pb-4 mx-auto">
+            <img class="object-fit" src="/bapanas.png" alt="logo bapanas">
+        </div>
+
+        <div class="justify-center mx-auto mb-4">
+            <h3 class="font-sans font-bold text-center text-white">Aplikasi Neraca</h3>
+            <h3 class="font-sans font-bold text-center text-white">Bahan Makanan (NBM)</h3>
+        </div>
+     <!--[if ENDBLOCK]><![endif]-->
+
+
+    <!--[if BLOCK]><![endif]-->        <!--[if BLOCK]><![endif]-->            <div class="mx-auto" justify-items-center>
+                <a href="https://sinbm.badanpangan.go.id/login"
+                    class="px-10 py-2 font-medium text-white border-2 rounded-md bg-primary hover:bg-primary-light hover:text-gray-700 hover:border-primary-light">Masuk</a>
+            </div>
+         <!--[if ENDBLOCK]><![endif]-->
+     <!--[if ENDBLOCK]><![endif]-->
+    <div class="my-4 mt-4">
+        <!--[if BLOCK]><![endif]-->            <a href="https://sinbm.badanpangan.go.id/national" class="grid grid-cols-10 mt-1 cursor-pointer group">
+                <div class="col-span-1"></div>
+                
+                <div
+                    class="flex items-center col-span-8 py-2 pl-3 justify-left rounded-l-xl bg-primary text-white group-hover:bg-primary-light group-hover:text-gray-600">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+    class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round"
+        d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0112 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125M13.125 12h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125M20.625 12c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5M12 14.625v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 14.625c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m0 1.5v-1.5m0 0c0-.621.504-1.125 1.125-1.125m0 0h7.5" />
+</svg>
+                    <span class="ml-4 overflow-x-hidden font-medium">Nasional</span>
+                </div>
+                <div
+                    class="col-span-1 bg-primary group-hover:bg-primary-light">
+                </div>
+            </a>
+                    <a href="https://sinbm.badanpangan.go.id/province" class="grid grid-cols-10 mt-1 cursor-pointer group">
+                <div class="col-span-1"></div>
+                
+                <div
+                    class="flex items-center col-span-8 py-2 pl-3 justify-left rounded-l-xl bg-white text-primary">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+    class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round"
+        d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0112 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125M13.125 12h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125M20.625 12c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5M12 14.625v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 14.625c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m0 1.5v-1.5m0 0c0-.621.504-1.125 1.125-1.125m0 0h7.5" />
+</svg>
+                    <span class="ml-4 overflow-x-hidden font-medium">Provinsi</span>
+                </div>
+                <div
+                    class="col-span-1 bg-white">
+                </div>
+            </a>
+                    <a href="https://sinbm.badanpangan.go.id/regency" class="grid grid-cols-10 mt-1 cursor-pointer group">
+                <div class="col-span-1"></div>
+                
+                <div
+                    class="flex items-center col-span-8 py-2 pl-3 justify-left rounded-l-xl bg-primary text-white group-hover:bg-primary-light group-hover:text-gray-600">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+    class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round"
+        d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0112 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125M13.125 12h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125M20.625 12c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5M12 14.625v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 14.625c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m0 1.5v-1.5m0 0c0-.621.504-1.125 1.125-1.125m0 0h7.5" />
+</svg>
+                    <span class="ml-4 overflow-x-hidden font-medium">Kabupaten/Kota</span>
+                </div>
+                <div
+                    class="col-span-1 bg-primary group-hover:bg-primary-light">
+                </div>
+            </a>
+                    <a href="https://sinbm.badanpangan.go.id/graphic" class="grid grid-cols-10 mt-1 cursor-pointer group">
+                <div class="col-span-1"></div>
+                
+                <div
+                    class="flex items-center col-span-8 py-2 pl-3 justify-left rounded-l-xl bg-primary text-white group-hover:bg-primary-light group-hover:text-gray-600">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+    class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
+    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
+</svg>
+                    <span class="ml-4 overflow-x-hidden font-medium">Grafik</span>
+                </div>
+                <div
+                    class="col-span-1 bg-primary group-hover:bg-primary-light">
+                </div>
+            </a>
+                    <a href="https://sinbm.badanpangan.go.id/info" class="grid grid-cols-10 mt-1 cursor-pointer group">
+                <div class="col-span-1"></div>
+                
+                <div
+                    class="flex items-center col-span-8 py-2 pl-3 justify-left rounded-l-xl bg-primary text-white group-hover:bg-primary-light group-hover:text-gray-600">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+    class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round"
+        d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+</svg>
+                    <span class="ml-4 overflow-x-hidden font-medium">Info</span>
+                </div>
+                <div
+                    class="col-span-1 bg-primary group-hover:bg-primary-light">
+                </div>
+            </a>
+         <!--[if ENDBLOCK]><![endif]-->
+    </div>
+
+    <div class="mt-auto mb-10">
+        <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+
+
+        <!--[if BLOCK]><![endif]-->            <hr class="mx-6 my-2 h-xs">
+            <div class="mx-6">
+                <div class="flex gap-x-4">
+                    <p class="text-sm font-medium text-white">Jalan Harsono RM No.3, Ragunan, Ps. Minggu, Jakarta
+                        Selatan, DKI Jakarta
+                        12550</p>
+                </div>
+
+                <div class="flex items-center mt-3 gap-x-3">
+                    <p class="text-sm font-medium text-white">(021) 7807377</p>
+                </div>
+
+
+                <div class="flex items-center mt-3 gap-x-3">
+                    <p class="text-sm font-medium text-white">nfa_official@badanpangan.go.id</p>
+                </div>
+
+                <div class="flex justify-center mx-auto mt-4 gap-x-4">
+                    <img class="w-6" src="/instagram-white.png" alt="instagram nbm">
+                    <img class="w-6" src="/twitter-white.png" alt="twitter nbm">
+                    <img class="w-6" src="/facebook-white.png" alt="facebook nbm">
+                    <img class="w-6" src="/youtube-white.png" alt="youtube nbm">
+                </div>
+            </div>
+         <!--[if ENDBLOCK]><![endif]-->
+    </div>
+</div>
+            </div>
+
+            <div class="w-[80vw] col-span-5">
+                <div class="static h-screen bg-transparent">
+        <head>
+    <link rel="preload" as="style" href="https://sinbm.badanpangan.go.id/build/assets/map-ab29bc2e.css" /><link rel="stylesheet" href="https://sinbm.badanpangan.go.id/build/assets/map-ab29bc2e.css" data-navigate-track="reload" /></head>
+
+<div id="map" class="z-0 w-full h-full"></div>
+
+<script>
+    var doughnut_chart = null;
+    var map = null;
+    let control_RightCenter = null;
+    let control_BottomLeft = null;
+    let control_TopCenter = null;
+    let selected_province_no = null;
+    let geojson = null;
+    let data_map = new Map();
+    let selected_year = null;
+    let selected_tab = null;
+    const region_type = 'province';
+    const lat = -1.758;
+    const lng = 127.925;
+    const latBuffer = 5;
+    const lngBuffer = 5;
+    const years = Array.from(new Array(new Date().getFullYear() - 2000 + 1), (x, i) => i + 2000);
+    const tabs = ['calories', 'protein', 'fat'];
+    const tabsLabel = {
+        'calories': 'AKE',
+        'protein': 'AKP',
+        'fat': 'AKL',
+    }
+
+    const tabsName = {
+        'calories': 'Energi',
+        'protein': 'Protein',
+        'fat': 'Lemak',
+    }
+
+    let datasets_data = [];
+
+    async function fetchGeoJSON() {
+        const response = await fetch('/province.geojson');
+        const data = await response.json();
+        return data;
+    }
+
+    // documentLoad
+    document.addEventListener('DOMContentLoaded', async function() {
+        province_geojson = await fetchGeoJSON();
+        initializeMap();
+        
+        const url_params = new URLSearchParams(window.location.search);
+        const year = url_params.get('year');
+        let selected_tab = url_params.get('tab');
+        if (!selected_tab)  {
+            selected_tab = 'calories';
+        }
+        const data_provinces = await fetchDataProvinces(year);
+        selected_province_no = data_provinces[0]?.province_no;
+        const data = await fetchData(region_type, year, selected_province_no);
+
+        loadMapOverlay(selected_tab, data.year, data, data_provinces);        
+    })
+
+    async function fetchDataProvinces(year) {
+        let request_url = `/api/province/data-by-years`;
+        if (year) {
+            request_url += `?year=${year}`;
+        }
+
+        const response = await fetch(request_url);
+        const datas = await response.json();
+
+        // empty data_map
+        data_map.clear();
+
+        // set data_map
+        datas?.forEach((data_province) => {
+            data_map.set(data_province.province_no, data_province);
+        });
+
+        return datas;
+    }
+
+    function loadMapOverlay(selected_tab, selected_year, data, data_provinces) {
+        const southWest = L.latLng(lat - latBuffer, lng - lngBuffer),
+            northEast = L.latLng(lat + latBuffer, lng + lngBuffer),
+            maxBounds = L.latLngBounds(southWest, northEast);
+
+        // add check if map exist
+        const leaflet_id = document.getElementById('map')._leaflet_id;
+
+        if (!leaflet_id) {
+            map = L.map('map', {
+                attributionControl: false,
+                zoomControl: false,
+            }).setView([lat, lng], 4);            
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 7,
+            }).addTo(map);
+
+           
+        } else {
+            if (control_RightCenter) {
+                map.removeControl(control_RightCenter);
+            }
+
+            if (control_BottomLeft) {
+                map.removeControl(control_BottomLeft);
+            }
+
+            if (control_TopCenter) {
+                map.removeControl(control_TopCenter);
+            }
+        }
+
+        L.Control.TopCenter = L.Control.extend({
+            onAdd: function(map) {
+                control_TopCenter = L.DomUtil.create('div', 'map-overlay-container');
+                L.DomEvent.disableScrollPropagation(control_TopCenter);
+                L.DomEvent.disableClickPropagation(control_TopCenter);
+
+                
+
+                control_TopCenter.innerHTML = `
+                    <div class='map-search'> 
+                        <select class="map-search-input">
+                            ${province_geojson?.features.map(province_feature => {
+                                const { PROVNO, PROVINSI } = province_feature.properties;
+                                // get province_no from url search param
+                                const url_params = new URLSearchParams(window.location.search);
+                                const province_no = url_params.get('province_no');
+                                
+                                if (province_no && province_no === PROVNO.toString()) {
+                                    return `<option value="${PROVNO}" selected>${PROVINSI}</option>`;
+                                } else {
+                                    return `<option value="${PROVNO}">${PROVINSI}</option>`;
+                                }
+                            })}
+                        </select>
+                        <button class="map-search-button">
+                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_97_6438)">
+                                    <path d="M15.4996 14.8975H14.7096L14.4296 14.6275C15.6296 13.2275 16.2496 11.3175 15.9096 9.28746C15.4396 6.50746 13.1196 4.28746 10.3196 3.94746C6.08965 3.42746 2.52965 6.98746 3.04965 11.2175C3.38965 14.0175 5.60965 16.3375 8.38965 16.8075C10.4196 17.1475 12.3296 16.5275 13.7296 15.3275L13.9996 15.6075V16.3975L18.2496 20.6475C18.6596 21.0575 19.3296 21.0575 19.7396 20.6475C20.1496 20.2375 20.1496 19.5675 19.7396 19.1575L15.4996 14.8975ZM9.49965 14.8975C7.00965 14.8975 4.99965 12.8875 4.99965 10.3975C4.99965 7.90746 7.00965 5.89746 9.49965 5.89746C11.9896 5.89746 13.9996 7.90746 13.9996 10.3975C13.9996 12.8875 11.9896 14.8975 9.49965 14.8975Z" fill="white"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_97_6438">
+                                        <rect width="24" height="24" fill="white" transform="translate(0 0.897461)"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                return control_TopCenter;
+            }
+        });
+
+        L.control.overlay = function(opts) {
+            return new L.Control.TopCenter(opts);
+        }
+
+        L.control.overlay({
+            position: 'topcenter'
+        }).addTo(map);
+
+        L.Control.RightCenter = L.Control.extend({
+            onAdd: function(map) {
+                control_RightCenter = L.DomUtil.create('div', 'map-graph-container');
+                L.DomEvent.disableScrollPropagation(control_RightCenter);
+                L.DomEvent.disableClickPropagation(control_RightCenter);
+
+                control_RightCenter.innerHTML = `<div>
+                    <div class="logo-container">
+                        <img class="logo-nbm" src="/logo.png" alt="logo-nbm" border="0">
+                    </div>
+                    <ul class="map-tab">
+                        ${tabs.map((tab) => {
+                            if (tab === selected_tab) {
+                                return `<li data-key=${tab} class="map-tab-item active">${tabsLabel[tab]}</li>`
+                            } else {
+                                return `<li data-key=${tab} class="map-tab-item">${tabsLabel[tab]}</li>`
+                            }
+                        })}
+                    </ul>
+                    <div class="graph-selector">
+                        <div class="label">Data Tahun</div>    
+                        <select class="graph-selector-year">
+                            ${years.map((year) => {
+                                if (Number(selected_year) === year) {
+                                    return `<option value="${year}" selected>${year}</option>`
+                                } else {
+                                    return `<option value="${year}">${year}</option>`
+                                } 
+                            })}
+                        </select>
+                    </div>
+                    <div class="map-graph">
+                        <div class="graph-title">Angka Kecukupan ${tabsName[selected_tab]}</div>
+                        <div class="graph-region">${data?.year ? data.formatted_name : ''}</div>
+                        <div id="canvasWrapper">
+                            <canvas id="graph"></canvas>
+                            <div class="graph-total">Total ${tabsLabel[selected_tab]}: 
+                                <span id="total-per-dataset"></span>
+                                <span id="total-per-dataset-unit"></span>
+                            </div>
+                            <div class="graph-no-data">Tidak ada data</div>
+                        </div>
+                        </div>
+                    </div>
+                </div>`;
+
+                // Attach the event listener after setting the innerHTML
+                const selectElement = control_RightCenter.querySelector('.graph-selector-year');
+                selectElement.addEventListener('change', async function(event) {
+                    const selected_year = event.target.value;
+                    const data = await fetchData(region_type, selected_year, selected_province_no);
+                    const data_provinces = await fetchDataProvinces(selected_year);
+
+                    loadMapOverlay(selected_tab, selected_year, data, data_provinces);
+                });
+
+                const tab_elements = control_RightCenter.querySelectorAll('.map-tab-item');
+                tab_elements.forEach((tab_element) => {
+                    tab_element.addEventListener('click', async function(event) {
+                        const selected_tab = tab_element.dataset.key;
+                        const data = await fetchData(region_type, selected_year, selected_province_no);
+                        const data_provinces = await fetchDataProvinces(data?.year);
+                        loadMapOverlay(selected_tab, data?.year, data, data_provinces);
+                    });
+                });
+
+                return control_RightCenter;
+            }
+        });
+
+        L.control.rightCenter = function(opts) {
+            return new L.Control.RightCenter(opts);
+        }
+
+        L.control.rightCenter({
+            position: 'rightcenter'
+        }).addTo(map);
+
+        const map_legends = [
+            {
+                label: "Lebih dari cukup (≥ 2400)",
+                color: colorPrimary
+            },
+            {
+                label: "Kurang",
+                color: colorSecondary
+            },
+            {
+                label: "Belum ada data",
+                color: colorOrange
+            },
+            
+        ]
+
+        L.Control.BottomLeft = L.Control.extend({
+            onAdd: function(map) {
+                control_BottomLeft = L.DomUtil.create('div', 'map-legend-container');
+                L.DomEvent.disableScrollPropagation(control_BottomLeft);
+                L.DomEvent.disableClickPropagation(control_BottomLeft);
+
+                control_BottomLeft.innerHTML = `<div class="map-legend">
+                    ${map_legends.map(map_legend => {
+                        return `<div class="map-legend-item">
+                            <div class="map-legend-indicator" style="background-color: ${map_legend.color}"></div>
+                            <div>${map_legend.label}</div>
+                        </div>`;
+                    }).join('')}
+                    <div class="map-release-description">*Data dirilis setiap januari</div>
+                </div>`;
+                return control_BottomLeft;
+            }
+        });
+
+        L.control.bottomLeft = function(opts) {
+            return new L.Control.BottomLeft(opts);
+        }
+
+        L.control.bottomLeft({
+            position: 'bottomleft'
+        }).addTo(map);
+
+        L.geoJson(province_geojson, {
+            style: polystyle,
+            onEachFeature: onEachFeatureClosure(selected_tab, selected_year, data_provinces),
+        }).addTo(map);
+
+        $('.map-search-input').select2({
+            width: '100%',
+            dropdownParent: $('.map-search'),
+        });
+
+        $('.map-search-input').on('select2:select', async function(e) {
+            const province_no = e.params.data.id;
+            // update url params with selected province
+            const url_params = new URLSearchParams(window.location.search);
+            url_params.set('province_no', province_no);
+            window.history.replaceState({}, '', `${location.pathname}?${url_params}`);
+
+            const data_province = data_map.get(province_no.toString());
+            const pph_calories = data_province?.table_datas?.pph?.data?.sum?.calories;
+            const pph_calories_formatted = pph_calories ? pph_calories?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') : 'Tidak Ditemukan';
+
+            // set selected option on province dropdown
+            $('.map-search-input').val(province_no).trigger('change');
+            
+            selected_province_no = province_no;
+            const province_feature = province_geojson.features.find((feature) => {
+                return feature.properties.PROVNO == province_no;
+            });
+            const layer = L.geoJSON(province_feature);
+            // set border to layer so it's standout
+            layer.setStyle({
+                weight: 2,
+                color: 'white',
+                dashArray: '',
+                fillOpacity: 0.7
+            });
+
+            // First, set the moveend listener
+            map.once('moveend', function() {
+                const custom_popup = `
+                    <div class="map-popup">
+                        <div>PROVINSI ${province_feature.properties.PROVINSI}</div>
+                        <div>AKE ${pph_calories_formatted}</div>
+                    </div>
+                `;
+                L.popup()
+                    .setLatLng(layer.getBounds().getCenter()) // Use getCenter to place the popup at the center of the feature
+                    .setContent(custom_popup)
+                    .openOn(map);
+            });
+            // Now, fit the map to the bounds of the layer
+            map.fitBounds(layer.getBounds());
+            const data = await fetchData(region_type, selected_year, province_no);
+            loadMapOverlay(selected_tab, selected_year, data, data_provinces);
+        });
+        
+        loadChart(selected_tab, selected_year, data);
+    }
+
+    function getColorFromData(feature) {
+        const province_no = feature.properties?.PROVNO;
+        const data_province = data_map.get(province_no.toString());
+        const pph_calories = data_province?.table_datas?.pph?.data?.sum?.calories;
+        let color = colorOrange;
+        if (pph_calories) {
+            if (pph_calories >= 2400) {
+                color = colorPrimary;
+            } else {
+                color = colorSecondary;
+            }
+        }
+        return color
+    }
+
+    function polystyle(feature) {
+        return {
+            fillColor: getColorFromData(feature),
+            weight: 1,
+            opacity: 0.9,
+            color: 'black',
+            fillOpacity: 1
+        };
+    }
+
+    function onEachFeatureClosure(selected_tab, selected_year, data_provinces) {
+        return function onEachFeature(feature, layer) {
+            const province_no = feature.properties?.PROVNO;
+            const data_province = data_map.get(province_no.toString());
+            const pph_calories = data_province?.table_datas?.pph?.data?.sum?.calories;
+            const pph_calories_formatted = pph_calories ? pph_calories?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') : 'Tidak Ditemukan';
+            const custom_popup = `
+                <div class="map-popup">
+                    <div>PROVINSI ${feature.properties?.PROVINSI}</div>
+                    <div>AKE ${pph_calories_formatted}</div>
+                </div>
+            `;
+            
+            layer.on('mouseover', function(e) {
+                const layer = e.target;
+                // open popup;
+                const popup = L.popup()
+                    .setLatLng(layer.getBounds().getCenter())
+                    .setContent(custom_popup)
+                    .openOn(map);                
+            });
+            
+            layer.on('click', async function(e) {
+                const layer = e.target;
+                const province_no = feature.properties?.PROVNO;
+                map.fitBounds(layer.getBounds());
+                const data = await fetchData(region_type, selected_year, province_no);
+                const data_provinces = await fetchDataProvinces(data?.year);
+                loadMapOverlay(selected_tab, selected_year, data, data_provinces);
+            })
+        };
+      
+    }
+
+    function onFeatureClick(e) {
+        const feature = e.target.feature
+    }
+
+    async function loadChart(selected_tab, selected_year, data) {
+        if (doughnut_chart) {
+            doughnut_chart.destroy();
+        }   
+
+        // update tab active
+        const tab_elements = document.querySelectorAll('.map-tab-item');
+        tab_elements.forEach((tab_element) => {
+            if (tab_element.dataset.key === selected_tab) {
+                tab_element.classList.add('active');
+            } else {
+                tab_element.classList.remove('active');
+            }
+        });
+
+        const url_params = new URLSearchParams(window.location.search);
+        if (selected_year) {
+            url_params.set('year', selected_year);
+        }
+
+        if (selected_tab) {
+            url_params.set('tab', selected_tab);
+        }
+        window.history.replaceState({}, '', `${location.pathname}?${url_params}`);
+        
+        const canvasWrapper = document.getElementById('canvasWrapper');
+        const ctx = document.getElementById('graph'); 
+        const graph_no_data = document.querySelector('.graph-no-data');
+
+        if (!data?.year) {
+            canvasWrapper.style.display = 'none';
+            graph_no_data.style.display = 'block';
+
+            return;
+        } else {
+            canvasWrapper.style.display = 'block';
+            graph_no_data.style.display = 'none';
+        }
+        
+        let total = 0;
+        if (selected_tab === 'calories') {
+            datasets_data = [Math.abs(data.data?.food_group?.data?.total_hewani?.calories), Math.abs(data.data?.food_group?.data?.total_nabati?.calories)]
+            total = data.data?.food_group?.data?.total?.calories;
+        } else if (selected_tab === 'protein') {
+            datasets_data = [Math.abs(data.data?.food_group?.data?.total_hewani?.protein), Math.abs(data.data?.food_group?.data?.total_nabati?.protein)]
+            total = data.data?.food_group?.data?.total?.protein;
+        } else if (selected_tab === 'fat') {
+            datasets_data = [Math.abs(data.data?.food_group?.data?.total_hewani?.fat), Math.abs(data.data?.food_group?.data?.total_nabati?.fat)]
+            total = data.data?.food_group?.data?.total?.fat;
+        }
+
+        // represent total below the chart
+        const total_element = document.getElementById('total-per-dataset');
+        total_element.style.marginLeft = '0.50rem';
+        total_element.innerHTML = `${total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
+
+        let unit_type = '';
+        if (selected_tab === 'calories') {
+            unit_type = 'kkal/kap/thn';
+        } else if (selected_tab === 'protein') {
+            unit_type = 'gram/kap/thn';
+        } else if (selected_tab === 'fat') {
+            unit_type = 'gram/kap/thn';
+        }
+        const total_element_unit = document.getElementById('total-per-dataset-unit');
+        total_element_unit.innerHTML = `${unit_type}`;
+        total_element_unit.style.marginLeft = '0.25rem';
+        total_element_unit.style.fontSize = '0.60rem';
+
+        doughnut_chart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Hewani', 'Nabati'],
+                datasets: [{
+                    data: datasets_data,
+                    backgroundColor: [
+                        colorPrimary,
+                        colorYellow,
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                plugins: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                            }
+                        }]
+                    },
+                    datalabels: {
+                        anchor: 'center',
+                        align: 'center',
+                        color: 'black',
+                        formatter: function(value, context) {
+                            const total = context.chart.data.datasets[0].data.reduce((acc, curr) => acc + curr, 0);
+                            const percentage = Math.round((value / total) * 100);
+
+                            return `${roundToTwo(value)} (${percentage}%)`; // Display the percentage value in the center
+                        },
+                        font: {
+                            size: '14',
+                            family: 'Monserrat',
+                            weight: 'bold'
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            enabled: false
+                        }
+                    }
+                }
+            },
+        });
+
+        function roundToTwo(num) {
+            return +(Math.round(num + "e+2") + "e-2");
+        }
+    }
+
+    function initializeMap() {
+        L.Map.include({
+            _initControlPos: function() {
+                const corners = this._controlCorners = {},
+                    l = 'leaflet-',
+                    container = this._controlContainer = L.DomUtil.create('div', l +
+                        'control-container', this
+                        ._container);
+
+                function createCorner(vSide, hSide) {
+                    const className = l + vSide + ' ' + l + hSide;
+                    corners[vSide + hSide] = L.DomUtil.create('div', className, container);
+                }
+
+                createCorner('top', 'left');
+                createCorner('top', 'right');
+                createCorner('bottom', 'left');
+                createCorner('bottom', 'right');
+
+                // position for search widget
+                corners['topcenter'] = L.DomUtil.create('div', l + 'top ' + l + 'center',
+                    container);
+
+                // position for chart/graph widget
+                corners['rightcenter'] = L.DomUtil.create('div', l + 'right ' + l + 'center',
+                    container);
+
+                // position for legend widget
+                corners['bottomcenter'] = L.DomUtil.create('div', l + 'bottom ' + l + 'center',
+                    container);
+            }
+        });
+    }
+</script>
+    </div>
+            </div>
+        </div>
+        <div x-persist="modal">
+        <div wire:snapshot="{&quot;data&quot;:{&quot;activeComponent&quot;:null,&quot;components&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;g1TsQyglT0OpT5SXpMZC&quot;,&quot;name&quot;:&quot;livewire-ui-modal&quot;,&quot;path&quot;:&quot;province&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;id&quot;},&quot;checksum&quot;:&quot;f3d2adfd880fb7f6bb064fbbf773396142cfab0eb388f3bf0786fd0a0cdc0b80&quot;}" wire:effects="{&quot;listeners&quot;:[&quot;openModal&quot;,&quot;destroyComponent&quot;]}" wire:id="g1TsQyglT0OpT5SXpMZC">
+    <!--[if BLOCK]><![endif]-->        <script>(()=>{var t,e={331:()=>{function t(t){return function(t){if(Array.isArray(t))return e(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,o){if(!t)return;if("string"==typeof t)return e(t,o);var n=Object.prototype.toString.call(t).slice(8,-1);"Object"===n&&t.constructor&&(n=t.constructor.name);if("Map"===n||"Set"===n)return Array.from(t);if("Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))return e(t,o)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function e(t,e){(null==e||e>t.length)&&(e=t.length);for(var o=0,n=new Array(e);o<e;o++)n[o]=t[o];return n}window.LivewireUIModal=function(){return{show:!1,showActiveComponent:!0,activeComponent:!1,componentHistory:[],modalWidth:null,listeners:[],getActiveComponentModalAttribute:function(t){if(void 0!==this.$wire.get("components")[this.activeComponent])return this.$wire.get("components")[this.activeComponent].modalAttributes[t]},closeModalOnEscape:function(t){if(!1!==this.getActiveComponentModalAttribute("closeOnEscape")){var e=!0===this.getActiveComponentModalAttribute("closeOnEscapeIsForceful");this.closeModal(e)}},closeModalOnClickAway:function(t){!1!==this.getActiveComponentModalAttribute("closeOnClickAway")&&this.closeModal(!0)},closeModal:function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0],e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:0,o=arguments.length>2&&void 0!==arguments[2]&&arguments[2];if(!1!==this.show){if(!0===this.getActiveComponentModalAttribute("dispatchCloseEvent")){var n=this.$wire.get("components")[this.activeComponent].name;Livewire.dispatch("modalClosed",{name:n})}if(!0===this.getActiveComponentModalAttribute("destroyOnClose")&&Livewire.dispatch("destroyComponent",{id:this.activeComponent}),e>0)for(var i=0;i<e;i++){if(o){var s=this.componentHistory[this.componentHistory.length-1];Livewire.dispatch("destroyComponent",{id:s})}this.componentHistory.pop()}var r=this.componentHistory.pop();r&&!t&&r?this.setActiveModalComponent(r,!0):this.setShowPropertyTo(!1)}},setActiveModalComponent:function(t){var e=this,o=arguments.length>1&&void 0!==arguments[1]&&arguments[1];if(this.setShowPropertyTo(!0),this.activeComponent!==t){!1!==this.activeComponent&&!1===o&&this.componentHistory.push(this.activeComponent);var n=50;!1===this.activeComponent?(this.activeComponent=t,this.showActiveComponent=!0,this.modalWidth=this.getActiveComponentModalAttribute("maxWidthClass")):(this.showActiveComponent=!1,n=400,setTimeout((function(){e.activeComponent=t,e.showActiveComponent=!0,e.modalWidth=e.getActiveComponentModalAttribute("maxWidthClass")}),300)),this.$nextTick((function(){var o,i=null===(o=e.$refs[t])||void 0===o?void 0:o.querySelector("[autofocus]");i&&setTimeout((function(){i.focus()}),n)}))}},focusables:function(){return t(this.$el.querySelectorAll("a, button, input:not([type='hidden'], textarea, select, details, [tabindex]:not([tabindex='-1'])")).filter((function(t){return!t.hasAttribute("disabled")}))},firstFocusable:function(){return this.focusables()[0]},lastFocusable:function(){return this.focusables().slice(-1)[0]},nextFocusable:function(){return this.focusables()[this.nextFocusableIndex()]||this.firstFocusable()},prevFocusable:function(){return this.focusables()[this.prevFocusableIndex()]||this.lastFocusable()},nextFocusableIndex:function(){return(this.focusables().indexOf(document.activeElement)+1)%(this.focusables().length+1)},prevFocusableIndex:function(){return Math.max(0,this.focusables().indexOf(document.activeElement))-1},setShowPropertyTo:function(t){var e=this;this.show=t,t?document.body.classList.add("overflow-y-hidden"):(document.body.classList.remove("overflow-y-hidden"),setTimeout((function(){e.activeComponent=!1,e.$wire.resetState()}),300))},init:function(){var t=this;this.modalWidth=this.getActiveComponentModalAttribute("maxWidthClass"),this.listeners.push(Livewire.on("closeModal",(function(e){var o,n,i;t.closeModal(null!==(o=null==e?void 0:e.force)&&void 0!==o&&o,null!==(n=null==e?void 0:e.skipPreviousModals)&&void 0!==n?n:0,null!==(i=null==e?void 0:e.destroySkipped)&&void 0!==i&&i)}))),this.listeners.push(Livewire.on("activeModalComponentChanged",(function(e){var o=e.id;t.setActiveModalComponent(o)})))},destroy:function(){this.listeners.forEach((function(t){t()}))}}}},754:()=>{}},o={};function n(t){var i=o[t];if(void 0!==i)return i.exports;var s=o[t]={exports:{}};return e[t](s,s.exports,n),s.exports}n.m=e,t=[],n.O=(e,o,i,s)=>{if(!o){var r=1/0;for(u=0;u<t.length;u++){for(var[o,i,s]=t[u],a=!0,c=0;c<o.length;c++)(!1&s||r>=s)&&Object.keys(n.O).every((t=>n.O[t](o[c])))?o.splice(c--,1):(a=!1,s<r&&(r=s));if(a){t.splice(u--,1);var l=i();void 0!==l&&(e=l)}}return e}s=s||0;for(var u=t.length;u>0&&t[u-1][2]>s;u--)t[u]=t[u-1];t[u]=[o,i,s]},n.o=(t,e)=>Object.prototype.hasOwnProperty.call(t,e),(()=>{var t={387:0,109:0};n.O.j=e=>0===t[e];var e=(e,o)=>{var i,s,[r,a,c]=o,l=0;if(r.some((e=>0!==t[e]))){for(i in a)n.o(a,i)&&(n.m[i]=a[i]);if(c)var u=c(n)}for(e&&e(o);l<r.length;l++)s=r[l],n.o(t,s)&&t[s]&&t[s][0](),t[s]=0;return n.O(u)},o=self.webpackChunk=self.webpackChunk||[];o.forEach(e.bind(null,0)),o.push=e.bind(null,o.push.bind(o))})(),n.O(void 0,[109],(()=>n(331)));var i=n.O(void 0,[109],(()=>n(754)));i=n.O(i)})();</script>
+     <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+
+    <div
+            x-data="LivewireUIModal()"
+            x-on:close.stop="setShowPropertyTo(false)"
+            x-on:keydown.escape.window="closeModalOnEscape()"
+            x-show="show"
+            class="fixed inset-0 z-10 overflow-y-auto"
+            style="display: none;"
+    >
+        <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-10 text-center sm:block sm:p-0">
+            <div
+                    x-show="show"
+                    x-on:click="closeModalOnClickAway()"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    class="fixed inset-0 transition-all transform"
+            >
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <div    
+                    x-show="show && showActiveComponent"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-bind:class="modalWidth"
+                    class="inline-block w-full overflow-hidden text-left align-bottom transition-all transform rounded-lg shadow-xl sm:my-8 sm:align-middle sm:w-full"
+                    id="modal-container"
+                    x-trap.noscroll.inert="show && showActiveComponent"
+                    aria-modal="true"
+            >
+                <!--[if BLOCK]><![endif]-->                 <!--[if ENDBLOCK]><![endif]-->
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+    <div role="status" id="toaster" x-data="toasterHub([], JSON.parse('{\u0022alignment\u0022:\u0022bottom\u0022,\u0022duration\u0022:5000}'))" class="fixed z-50 p-4 w-full flex flex-col pointer-events-none sm:p-6 bottom-0 items-end rtl:items-start">
+    <template x-for="toast in toasts" :key="toast.id">
+        <div x-show="toast.isVisible"
+             x-init="$nextTick(() => toast.show($el))"
+                          x-transition:enter-start="translate-y-12 opacity-0"
+             x-transition:enter-end="translate-y-0 opacity-100"
+                          x-transition:leave-end="opacity-0 scale-90"
+             class="relative duration-300 transform transition ease-in-out max-w-xs w-full pointer-events-auto"
+             :class="toast.select({ error: 'text-white', info: 'text-black', success: 'text-white', warning: 'text-white' })"
+        >
+            <i x-text="toast.message"
+               class="inline-block select-none not-italic px-6 py-3 rounded shadow-lg text-sm w-full mt-3"
+               :class="toast.select({ error: 'bg-red-500', info: 'bg-gray-200', success: 'bg-primary', warning: 'bg-orange-500' })"
+            ></i>
+
+                        <button @click="toast.dispose()" aria-label="close" class="absolute right-0 p-2 focus:outline-none rtl:right-auto rtl:left-0 top-3">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+            </button>
+                    </div>
+    </template>
+</div>
+
+    <script src="https://sinbm.badanpangan.go.id/livewire/livewire.min.js?id=44144c23"   data-csrf="eQ5x973iZO3yBrFu7vNnYhVrm42TH18JvcmSArKI" data-update-uri="/livewire/update" data-navigate-once="true"></script>
+
+    <script>
+        // adding this solve dropdown problem when using wire:navigate
+        document.addEventListener('livewire:navigated', () => {
+            initFlowbite();
+        })
+
+        // register chartjs plugin
+        Chart.register(ChartDataLabels)
+
+        // get individual data
+        async function fetchData(region_type, year, province_no = null, regency_no = null) {
+            let request_url = `/api/data?region=${region_type}`;
+            if (year) {
+                request_url += `&year=${year}`;
+            }
+
+            if (province_no) {
+                request_url += `&province_no=${province_no}`;
+            }
+
+            if (regency_no) {
+                request_url += `&regency_no=${regency_no}`;
+            }
+            console.log('@@fetchData', regency_no)
+
+            const data = await fetch(request_url);
+            const data_json = await data.json();
+            return data_json;
+        }
+    </script>
+</body>
+
+</html>
+

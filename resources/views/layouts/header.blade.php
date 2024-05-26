@@ -130,7 +130,7 @@
                                         <ul class="sub-menu">
                                             <li><a href="{{ route('panel') }}">Panel Harga Pangan</a></li>
                                             <li><a href="{{ route('fsva_ternate') }}">FSVA Peta Kerawanan Pangan</a></li>
-                                            <li><a href="{{ route('neraca_ternate') }}">Neraca Bahan Makanan</a></li>
+                                            <li><a href="https://sinbm.badanpangan.go.id/province?tab=calories&province_no=82">Neraca Bahan Makanan</a></li>
 
                                         </ul>
                                     </li>
@@ -169,6 +169,9 @@
                 </div>
             </div>
         </div>
+       <div class="bg-success text-white">
+        <marquee behavior="" direction="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id culpa laborum omnis iusto porro fugiat inventore? Quisquam delectus tempore natus cupiditate? Dignissimos consequatur perferendis saepe, fugiat tempora impedit doloribus nostrum?</marquee>
+       </div>
     </header>
     <!-- HEADER SECTION ENDS HERE -->
 

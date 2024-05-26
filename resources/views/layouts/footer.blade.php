@@ -76,8 +76,8 @@
     <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('assets/vendor/fslightbox/fslightbox.js') }}"></script>
     <script src="{{ asset('assets/vendor/mixitup/mixitup.min.js') }}"></script>
-    {{-- <script src="{{ asset('assets/vendor/gsap/gsap.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/gsap/gsap-scroll-trigger.min.js') }}"></script> --}}
+    <script src="{{ asset('assets/vendor/gsap/gsap.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/gsap/gsap-scroll-trigger.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/split-type/split-type-0.3.3.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/lenis/lenis.js') }}"></script>
     <script src="{{ asset('assets/vendor/anime/anime.min.js') }}"></script>
