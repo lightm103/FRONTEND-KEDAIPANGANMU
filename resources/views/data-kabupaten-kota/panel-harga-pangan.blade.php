@@ -146,7 +146,7 @@
             const endDate = $('#endDate').val();
 
             $.ajax({
-                url: `http://127.0.0.1:8000/api/data_nasional`,
+                url: `{{url('/')}}/api/data_nasional`,
                 type: 'GET',
                 data: {
                     jenisDataPanel: jenisDataPanel,
