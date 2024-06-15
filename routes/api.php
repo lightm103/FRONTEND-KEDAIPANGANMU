@@ -22,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/data_nasional', [GetDataJson::class, 'data_nasional'])->name('data_nasional');
+Route::get('/get-data/{year}/{jenisDataPanel}', [GetDataJson::class, 'getData']);
+Route::get('/fsva-data', [GetDataJson::class, 'getFSVAData']);

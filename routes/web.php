@@ -38,7 +38,7 @@ Route::controller(HomeController::class)->group(function() {
         Route::get('/strategi-marketing/timeline', 'timeline')->name('timeline');
         Route::get('/strategi-marketing/nilai-sikap-perilaku', 'nilai_sikap_perilaku')->name('nilai_sikap_perilaku');
     Route::get('/data-kabupaten-kota', 'data_kabupaten_kota')->name('data_kabupaten_kota');
-        Route::get('/panel-harga-pangan', 'panel_ternate')->name('panel');
+        Route::get('/panel-harga-pangan', 'panel_harga_pangan')->name('panel');
         Route::get('/fsva-peta-kerawanan-pangan', 'fsva_ternate')->name('fsva_ternate');
         Route::get('/neraca-bahan-makanan', 'neraca_ternate')->name('neraca_ternate');
         Route::get('/panel-harga-pangan/halmahera-tengah', 'panel_halteng')->name('panel_halteng');

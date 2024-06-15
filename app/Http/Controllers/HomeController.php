@@ -114,7 +114,7 @@ class HomeController extends Controller
         return view('data-kabupaten-kota.data-kabupaten-kota', $data);
     }
     
-    public function panel_ternate()
+    public function panel_harga_pangan()
     {
         // kode untuk halaman panel harga pangan
         $data['title'] = 'Panel Harga Pangan';
